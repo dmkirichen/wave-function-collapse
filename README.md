@@ -8,6 +8,7 @@ Also install the following libraries (e.g. pip install _library_name_):
 
 - numpy
 - opencv-contrib-python
+- Flask
 
 
 ### Basic Usage
