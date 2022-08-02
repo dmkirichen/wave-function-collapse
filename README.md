@@ -13,6 +13,16 @@ Also install the following libraries (e.g. pip install _library_name_):
 
 ### Basic Usage
 
+#### Web App
+
+Run ```flask run``` in terminal to start server.
+
+Then you can type ```http://localhost/grid``` in browser to see the current state of the grid.
+
+If you want to update the grid, use ```http://localhost/collapse```.
+
+#### Locally
+
 Run ```python3 wave_function_processing.py```
 
 Then you can press ```n``` to get the next step of generation. 

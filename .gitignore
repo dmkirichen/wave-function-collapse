@@ -1,4 +1,5 @@
 output/
 .idea/
 __pycache__/
-
+static/cur_grid.png
+tmp/

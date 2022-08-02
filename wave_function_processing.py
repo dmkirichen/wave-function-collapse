@@ -60,7 +60,7 @@ class Grid:
         self.__neighbours_dict = neighbours_dict
         self.__grid = np.zeros(shape=[GRID_PX_SIZE, GRID_PX_SIZE, 3], dtype=np.uint8)
 
-        self.__cell_grid = [[self.Cell(False, self.__image_dict.keys(), j, i) for i in range(self.__tiles_in_row)]
+        self.__cell_grid = [[self.Cell(False, list(self.__image_dict.keys()), j, i) for i in range(self.__tiles_in_row)]
                             for j in range(self.__tiles_in_col)]
 
     def get_grid(self):
@@ -138,6 +138,7 @@ class Grid:
         cell = np.random.choice(fewest_state_cells, size=1)[0]
 
         # Change collapsed cell on the canvas
+        # print(f"cell.possible_states={cell.possible_states}")
         new_state = np.random.choice(cell.possible_states, size=1)[0]
         print(f"changing cell y={cell.y}, x={cell.x} to {new_state} state")
         self.change_tile(new_state, cell.y, cell.x)
@@ -152,25 +153,26 @@ class Grid:
         cv2.imwrite(path, self.__grid)
 
 
-grid = Grid(GRID_PX_SIZE, TILE_PX_SIZE, IMAGE_DICT, NEIGHBOURS_DICT)
-grid.change_tile("RIGHT", 1, 0)
-grid.change_tile("UP", 1, 2)
+if __name__ == "__main__":
+    grid = Grid(GRID_PX_SIZE, TILE_PX_SIZE, IMAGE_DICT, NEIGHBOURS_DICT)
+    grid.change_tile("RIGHT", 1, 0)
+    grid.change_tile("UP", 1, 2)
 
-grid.show()
-
-while True:
-    key = cv2.waitKey(0)
-    if key == ord('n'):
-        # next iteration
-        print("next iteration")
-    elif key == ord('s'):
-        print("attempt to save the image")
-        name = f"grid_{int(time.time())}.png"
-        grid.save_png(name)
-        break
-    else:
-        break
-    grid.collapse_next_cell()
     grid.show()
 
-cv2.destroyAllWindows()
+    while True:
+        key = cv2.waitKey(0)
+        if key == ord('n'):
+            # next iteration
+            print("next iteration")
+        elif key == ord('s'):
+            print("attempt to save the image")
+            name = f"grid_{int(time.time())}.png"
+            grid.save_png(name)
+            break
+        else:
+            break
+        grid.collapse_next_cell()
+        grid.show()
+
+    cv2.destroyAllWindows()
