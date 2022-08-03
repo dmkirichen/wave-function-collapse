@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tiles</title>
+</head>
+<body>
+    {% for tile_image in tile_images %}
+        <img src="{{ url_for('static', filename=tile_image) }}" alt="couldn't load tile image">
+    {% endfor %}
+</body>
