@@ -1,0 +1,74 @@
+{
+  "tiles": [
+    {
+      "filename": "corner.png",
+      "edges": ["green", "green", "green_grey", "grey_green"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "pin.png",
+      "edges": ["green_light_green", "grey_green", "grey", "green_grey"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "flat_grey.png",
+      "edges": ["grey", "grey", "grey", "grey"],
+      "rotations": []
+    },
+    {
+      "filename": "flat_green.png",
+      "edges": ["green", "green", "green", "green"],
+      "rotations": []
+    },
+    {
+      "filename": "corner_wire.png",
+      "edges": ["green_light_green", "green_light_green", "green", "green"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "one_diagonal.png",
+      "edges": ["green_light_green", "green_light_green", "green", "green"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "one_side_dot.png",
+      "edges": ["green_light_green", "green", "green", "green"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "straight_wire.png",
+      "edges": ["green_light_green", "green", "green_light_green", "green"],
+      "rotations": [1]
+    },
+    {
+      "filename": "three_side_wire.png",
+      "edges": ["green", "green_light_green", "green_light_green", "green_light_green"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "two_diagonals.png",
+      "edges": ["green_light_green", "green_light_green", "green_light_green", "green_light_green"],
+      "rotations": [1]
+    },
+    {
+      "filename": "two_side_dot.png",
+      "edges": ["green", "green_light_green", "green", "green_light_green"],
+      "rotations": [1]
+    },
+    {
+      "filename": "green_grey_cross.png",
+      "edges": ["green_light_green", "green_grey_green", "green_light_green", "green_grey_green"],
+      "rotations": [1]
+    },
+    {
+      "filename": "green_to_grey.png",
+      "edges": ["green_grey_green", "green", "green_light_green", "green"],
+      "rotations": [1, 2, 3]
+    },
+    {
+      "filename": "straight_grey.png",
+      "edges": ["green", "green_grey_green", "green", "green_grey_green"],
+      "rotations": [1]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "tiles": [
+    {
+      "filename": "Blank.png",
+      "edges": [0, 0, 0, 0],
+      "rotations": []
+    },
+    {
+      "filename": "Up.png",
+      "edges": [1, 1, 0, 1],
+      "rotations": [1, 2, 3]
+    }
+  ]
+}

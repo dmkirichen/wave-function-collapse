@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from wave_function_processing import Tile
+from tile import Tile
 
 
 class TestTileClass(unittest.TestCase):

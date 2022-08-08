@@ -2,7 +2,7 @@ import os
 import os.path
 from distutils.dir_util import mkpath, copy_tree, remove_tree
 from flask import Flask, render_template, url_for
-from wave_function_processing import Grid, GRID_PX_SIZE, TILE_PX_SIZE, \
+from opencv_run import Grid, GRID_PX_SIZE, TILE_PX_SIZE, \
                                      IMAGE_DICT, NEIGHBOURS_DICT
 
 TILES_FOLDER = "tiles/"
