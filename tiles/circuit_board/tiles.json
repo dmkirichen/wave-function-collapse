@@ -2,28 +2,23 @@
   "tiles": [
     {
       "filename": "corner.png",
-      "edges": ["green", "green", "green_grey", "grey_green"],
+      "edges": ["green", "green", "green_black", "black_green"],
       "rotations": [1, 2, 3]
     },
     {
       "filename": "pin.png",
-      "edges": ["green_light_green", "grey_green", "grey", "green_grey"],
+      "edges": ["green_light_green", "green_black", "black", "black_green"],
       "rotations": [1, 2, 3]
     },
     {
-      "filename": "flat_grey.png",
-      "edges": ["grey", "grey", "grey", "grey"],
+      "filename": "flat_black.png",
+      "edges": ["black", "black", "black", "black"],
       "rotations": []
     },
     {
       "filename": "flat_green.png",
       "edges": ["green", "green", "green", "green"],
       "rotations": []
-    },
-    {
-      "filename": "corner_wire.png",
-      "edges": ["green_light_green", "green_light_green", "green", "green"],
-      "rotations": [1, 2, 3]
     },
     {
       "filename": "one_diagonal.png",
@@ -69,6 +64,13 @@
       "filename": "straight_grey.png",
       "edges": ["green", "green_grey_green", "green", "green_grey_green"],
       "rotations": [1]
+    }
+  ],
+  "ignoring": [
+    {
+      "filename": "corner_wire.png",
+      "edges": ["green_light_green", "green_light_green", "green", "green"],
+      "rotations": [1, 2, 3]
     }
   ]
 }

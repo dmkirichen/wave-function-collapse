@@ -14,7 +14,7 @@ def load_tiles_config(config_path: str, tile_px_size, tiles_folder=".") -> list:
         assert os.path.exists(path), f"{path} does not exist in the system"
         image = cv2.resize(cv2.imread(path), dsize=[tile_px_size, tile_px_size])
         edges = tuple(tile_info["edges"])
-        new_tile = Tile(image, edges)
+        new_tile = Tile(image, edges, tile_id=tile_info["filename"])
         tile_list.append(new_tile)
         for rotation in tile_info["rotations"]:
             tile_list.append(new_tile.rotate(rotation))

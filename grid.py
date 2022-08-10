@@ -6,7 +6,7 @@ from tile import Tile
 
 
 def compare_edges(edge1: str, edge2: str):
-    return edge1.split("_") == reversed(edge2.split("_"))
+    return edge1.split("_") == edge2.split("_")[::-1]
 
 
 class Grid:
@@ -51,29 +51,38 @@ class Grid:
         cell.possible_states = [tile]
 
         # Updating up cell
+        # print(f"\nchanging possible states of neighbouring cells near ({y},{x})")
         if y > 0:
             cell = self.__cell_grid[y - 1][x]
             if not cell.collapsed:  # if state is ambiguous, update possible states
+                # print(f"({cell.y},{cell.x}):\n\tpos.states before: {[pos.get_id() for pos in cell.possible_states]}")
                 cell.possible_states = [pos_tile for pos_tile in cell.possible_states
-                                        if tile.get_edges()[0] == pos_tile.get_edges()[2]]
+                                        if compare_edges(tile.get_edges()[0], pos_tile.get_edges()[2])]
+                # print(f"\tpos.states after: {[pos.get_id() for pos in cell.possible_states]}")
         # Updating left cell
         if x > 0:
             cell = self.__cell_grid[y][x - 1]
             if not cell.collapsed:  # if state is ambiguous, update possible states
+                # print(f"({cell.y},{cell.x}):\n\tpos.states before: {[pos.get_id() for pos in cell.possible_states]}")
                 cell.possible_states = [pos_tile for pos_tile in cell.possible_states
-                                        if tile.get_edges()[3] == pos_tile.get_edges()[1]]
+                                        if compare_edges(tile.get_edges()[3], pos_tile.get_edges()[1])]
+                # print(f"\tpos.states after: {[pos.get_id() for pos in cell.possible_states]}")
         # Updating down cell
         if y < self.__tiles_in_col - 1:
             cell = self.__cell_grid[y + 1][x]
             if not cell.collapsed:  # if state is ambiguous, update possible states
+                # print(f"({cell.y},{cell.x}):\n\tpos.states before: {[pos.get_id() for pos in cell.possible_states]}")
                 cell.possible_states = [pos_tile for pos_tile in cell.possible_states
-                                        if tile.get_edges()[2] == pos_tile.get_edges()[0]]
+                                        if compare_edges(tile.get_edges()[2], pos_tile.get_edges()[0])]
+                # print(f"\tpos.states after: {[pos.get_id() for pos in cell.possible_states]}")
         # Updating right cell
         if x < self.__tiles_in_row - 1:
             cell = self.__cell_grid[y][x + 1]
             if not cell.collapsed:  # if state is ambiguous, update possible states
+                # print(f"({cell.y},{cell.x}):\n\tpos.states before: {[pos.get_id() for pos in cell.possible_states]}")
                 cell.possible_states = [pos_tile for pos_tile in cell.possible_states
-                                        if tile.get_edges()[1] == pos_tile.get_edges()[3]]
+                                        if compare_edges(tile.get_edges()[1], pos_tile.get_edges()[3])]
+                # print(f"\tpos.states after: {[pos.get_id() for pos in cell.possible_states]}")
 
         # Changing grid image
         tile_arr = tile.get_image()
@@ -101,15 +110,16 @@ class Grid:
         # Choose cell to collapse
         fewest_state_cells = self.__get_non_collapsed_with_fewest_possible_states()
         if len(fewest_state_cells) == 0:
-            return  # nothing to collapse
+            return False  # nothing to collapse
 
         cell = np.random.choice(fewest_state_cells, size=1)[0]
 
         # Change collapsed cell on the canvas
         # print(f"cell.possible_states={cell.possible_states}")
         new_state = np.random.choice(cell.possible_states, size=1)[0]
-        print(f"changing cell y={cell.y}, x={cell.x} to {new_state} state")
+        print(f"changing cell y={cell.y}, x={cell.x} to {new_state.get_id()} state")
         self.change_tile(new_state, cell.y, cell.x)
+        return True
 
     def show(self):
         cv2.imshow("Grid", self.__grid)
