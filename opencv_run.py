@@ -17,18 +17,6 @@ if __name__ == "__main__":
     while True:  # restarting each failed attempt
         grid = Grid(GRID_PX_SIZE, TILE_PX_SIZE, TILE_LIST)
         grid.show()
-
-        # key = cv2.waitKey(0)
-        # if key == ord('n'):
-        #     # next iteration
-        #     print("next iteration")
-        # elif key == ord('s'):
-        #     print("attempt to save the image")
-        #     name = f"grid_{int(time.time())}.png"
-        #     grid.save_png(name)
-        #     break
-        # else:
-        #     break
         try:
             while True:
                 ret = grid.collapse_next_cell()

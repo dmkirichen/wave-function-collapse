@@ -2,11 +2,17 @@ import os
 import os.path
 from distutils.dir_util import mkpath, copy_tree, remove_tree
 from flask import Flask, render_template, url_for
-from opencv_run import Grid, GRID_PX_SIZE, TILE_PX_SIZE, \
-                                     IMAGE_DICT, NEIGHBOURS_DICT
+from utils import load_tiles_config
+from opencv_run import Grid
 
-TILES_FOLDER = "tiles/"
+GRID_PX_SIZE = 500
+TILE_PX_SIZE = 50
+TILES_FOLDER = "tiles/circuit_board/"
 OUTPUT_FOLDER = "output/"
+
+# Reading config about tiles info
+config_path = os.path.join(TILES_FOLDER, "tiles.json")
+TILE_LIST = load_tiles_config(config_path, TILE_PX_SIZE, tiles_folder=TILES_FOLDER)
 
 # Creating cache folder for users generation
 WORKING_FOLDER = "./tmp/"
@@ -22,7 +28,7 @@ copy_tree(OUTPUT_FOLDER, WORKING_OUTPUT_FOLDER)
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = WORKING_OUTPUT_FOLDER
-grid = Grid(GRID_PX_SIZE, TILE_PX_SIZE, IMAGE_DICT, NEIGHBOURS_DICT)
+grid = Grid(GRID_PX_SIZE, TILE_PX_SIZE, TILE_LIST)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -42,8 +48,12 @@ def show_grid():
 
 @app.route('/collapse', methods=['GET', 'POST'])
 def collapse():
+    global grid
     # Collapse one cell on the grid and show current state
-    grid.collapse_next_cell()
+    try:
+        grid.collapse_next_cell()
+    except ValueError:
+        grid = Grid(GRID_PX_SIZE, TILE_PX_SIZE, TILE_LIST)
     return show_grid()
 
 
